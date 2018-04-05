@@ -1,14 +1,14 @@
-#include <iostream>
+#include <stdio.h>
 #include <time.h>
-#define TAM 100000
+#include <stdlib.h>
 
-using namespace std;
+#define TAM 100000
 
 //Imprimir vetor
 void imprimirVetor(int vetor[], int n) {
     for (int i=0; i < n; i++)
-        cout << "|" << vetor[i];
-    cout << endl;
+        printf("| %d", vetor[i]);
+    puts("");
 }
 
 //bubble sort
@@ -33,7 +33,7 @@ int* insertionSort(int vetor[], int n) {
         chave = vetor[i];
         j = i-1;
  
-        /* Move elements of arr[0..i-1], that are
+        /* Move elements of vetor[0..i-1], that are
           greater than key, to one position ahead
           of their current position */
         while (j >= 0 && vetor[j] > chave){
@@ -43,6 +43,23 @@ int* insertionSort(int vetor[], int n) {
         vetor[j+1] = chave;
     }
 
+    return vetor;
+}
+
+int* selection_sort(int vetor[], int n) { 
+    int min, aux;
+    for (int i = 0; i < (n-1); i++) {
+        min = i;
+        for (int j = (i+1); j < n; j++) {
+            if(vetor[j] < vetor[min]) 
+            min = j;
+        }
+        if (vetor[i] != vetor[min]) {
+            aux = vetor[i];
+            vetor[i] = vetor[min];
+            vetor[min] = aux;
+        }
+    }
     return vetor;
 }
  
@@ -67,14 +84,17 @@ int main(){
     Ticks[0] = clock();
 
     //ordenando o vetor com bubble_sort
-    int* vetor2 = bubble_sort(vetor, TAM);
+    //int* vetor2 = bubble_sort(vetor, TAM);
+
+    //ordenando o vetor com selection_sort
+    int* vetor2 = selection_sort(vetor, TAM);
 
     //Medir tempo de execução
     Ticks[1] = clock();
     double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
-    cout << "Tempo gasto: " << Tempo << " ms." << endl;
-    cout << "Tempo gasto: " << Tempo/1000 << " s." << endl;
-    
+    printf("Tempo gasto: %.3f ms.\n", Tempo);
+    printf("Tempo gasto: %.3f s.\n", Tempo/1000);
+
     //imprimindo depois de ordenar
     //imprimirVetor(vetor2, TAM);
 
