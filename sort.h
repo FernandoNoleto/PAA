@@ -13,10 +13,11 @@ int* insertion_sort(int vetor[], int n);
 //Selection sort
 int* selection_sort(int vetor[], int n);
 
-//void merge(int, int, int, int);
+//Função auxiliar merge
+int* merge(int vetor[], int comeco, int meio, int fim);
 
 //Merge Sort
-//void mergeSort(int, int, int);
+int* merge_sort(int vetor[], int comeco, int fim);
 
 
 #endif

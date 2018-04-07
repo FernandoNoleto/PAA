@@ -31,7 +31,7 @@ int* insertion_sort(int vetor[], int n) {
     for (i = 1; i < n; i++){
         chave = vetor[i];
         j = i-1;
-        
+
         while (j >= 0 && vetor[j] > chave){
             vetor[j+1] = vetor[j];
             j = j-1;
@@ -61,8 +61,8 @@ int* selection_sort(int vetor[], int n) {
 }
 
 //Função auxiliar merge
-/*
-void merge(int vetor[], int comeco, int meio, int fim) {
+
+int* merge(int vetor[], int comeco, int meio, int fim) {
     int com1 = comeco, com2 = meio+1, comAux = 0, tam = fim-comeco+1;
     int *vetAux;
     vetAux = (int*)malloc(tam * sizeof(int));
@@ -93,16 +93,19 @@ void merge(int vetor[], int comeco, int meio, int fim) {
     }
     
     free(vetAux);
+
+    return vetor;
 }
 
 //Merge Sort
-void mergeSort(int vetor[], int comeco, int fim){
+int* merge_sort(int vetor[], int comeco, int fim){
+    int* v;
     if (comeco < fim) {
         int meio = (fim+comeco)/2;
 
-        mergeSort(vetor, comeco, meio);
-        mergeSort(vetor, meio+1, fim);
-        merge(vetor, comeco, meio, fim);
+        merge_sort(vetor, comeco, meio);
+        merge_sort(vetor, meio+1, fim);
+        v = merge(vetor, comeco, meio, fim);
     }
+    return v;
 }
-*/

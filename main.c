@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "sort.h"
 
-#define TAM 10000
+#define TAM 100000
 
 void menu(int opcao){
 
@@ -41,7 +41,8 @@ void menu(int opcao){
             puts("\nSelection sort:");
             break;
         case 4:
-            //vetor_ordenado = merge_sort(vetor, TAM);
+            vetor_ordenado = merge_sort(vetor, 0, TAM-1);
+            puts("\nMerge sort:");
             break;
         default:
             puts("Opção inválida");
@@ -89,6 +90,7 @@ int main(){
                 menu(opc);
                 break;
             case 4:
+                system("clear");
                 menu(opc);
                 break;
             case 5:
