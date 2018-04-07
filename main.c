@@ -3,9 +3,14 @@
 #include <stdlib.h>
 #include "sort.h"
 
-#define TAM 500000
+//#define TAM 100
 
 void menu(int opcao){
+
+    int TAM = 0;
+    printf("Tamanho do vetor:. ");
+    scanf("%d", &TAM);
+    puts("");
 
     //Medir tempo de execução
     clock_t inicio;
