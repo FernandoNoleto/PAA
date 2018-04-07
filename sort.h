@@ -19,5 +19,8 @@ int* merge(int vetor[], int comeco, int meio, int fim);
 //Merge Sort
 int* merge_sort(int vetor[], int comeco, int fim);
 
+//Quick sort
+int* quick_sort(int vetor[], int inicio, int fim);
+
 
 #endif
