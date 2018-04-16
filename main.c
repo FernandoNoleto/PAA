@@ -5,6 +5,16 @@
 
 //#define TAM 100
 
+void clear(){
+    #ifdef LINUX
+    system("clear");
+    #elif WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+}
+
 void menu(int opcao){
 
     int TAM = 0;
@@ -73,37 +83,44 @@ void menu(int opcao){
 
 int main(){
 
-    system("clear");
+    //system("clear");
+    clear();
     
     int opc = 0;
     
     do{
-        puts("0 - SAIR | 1 - BUBBLE SORT | 2 - INSERTION SORT | 3 - SELECTION SORT | 4 - MERGE SORT | 5 - Quick sort");
+        puts("0 - SAIR | 1 - BUBBLE SORT | 2 - INSERTION SORT | 3 - SELECTION SORT | 4 - MERGE SORT | 5 - QUICK SORT");
         scanf("%d", &opc);
 
         switch(opc){
             case 0:
-                system("clear");
+                //system("clear");
+                clear();
                 puts("FLW!");
                 break;
             case 1:
-                system("clear");
+                //system("clear");
+                clear();
                 menu(opc);
                 break;
             case 2:
-                system("clear");
+                //system("clear");
+                clear();
                 menu(opc);
                 break;
             case 3:
-                system("clear");
+                //system("clear");
+                clear();
                 menu(opc);
                 break;
             case 4:
-                system("clear");
+                //system("clear");
+                clear();
                 menu(opc);
                 break;
             case 5:
-                system("clear");
+                //system("clear");
+                clear();
                 menu(opc);
                 break;
             default:
