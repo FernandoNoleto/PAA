@@ -110,6 +110,7 @@ int* merge_sort(int vetor[], int comeco, int fim){
     return v;
 }
 
+//Quick sort
 int* quick_sort(int vetor[], int inicio, int fim) {
 	int i, j, pivo, aux;
 	i = inicio;
@@ -135,5 +136,23 @@ int* quick_sort(int vetor[], int inicio, int fim) {
 	if(i < fim)
 		quick_sort(vetor, i, fim);
 
+    return vetor;
+}
+
+//selection sort_inverso
+int* selection_sort_inverso(int vetor[], int n) { 
+    int min, aux;
+    for (int i = 0; i < (n-1); i++) {
+        min = i;
+        for (int j = (i+1); j < n; j++) {
+            if(vetor[j] > vetor[min]) 
+            min = j;
+        }
+        if (vetor[i] != vetor[min]) {
+            aux = vetor[i];
+            vetor[i] = vetor[min];
+            vetor[min] = aux;
+        }
+    }
     return vetor;
 }

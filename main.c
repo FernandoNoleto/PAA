@@ -1,11 +1,23 @@
-#include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <time.h>
 #include "sort.h"
 
 //#define TAM 100
 
-void menu(int opcao){
+void clear(){
+    #ifdef LINUX
+    system("clear");
+    #elif WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+}
+
+
+void menu(int opcao, int ord){
 
     int TAM = 0;
     printf("Tamanho do vetor:. ");
@@ -18,39 +30,94 @@ void menu(int opcao){
 
     srand(time(NULL));
 
-    int vetor[TAM];
+    int vetor_random[TAM];
+    int* vetor_ordenado;
+    int* vetor_inverso;
 
-    //Populando o vetor
+    //Populando o vetor com valores aleatórios
     for(int i = 0; i < TAM; i++){
-        vetor[i] = rand() % 10000;
+        vetor_random[i] = rand() % 10000;
+    }
+
+    //ord = crescente
+    if(ord == 1){
+        vetor_ordenado = quick_sort(vetor_random, 0, TAM-1);
+    }
+    
+    //ord = decrescente
+    if(ord == 3){
+        vetor_inverso = selection_sort_inverso(vetor_random, TAM);
     }
 
     //imprimindo antes de ordenar
     //imprimirVetor(vetor, TAM);
 
-    int* vetor_ordenado;
+    int* vetor_final;
 
     inicio = clock();
 
+    //1 - crescente
+    //2 - random
+    //3 - decrescente
     switch(opcao){
         case 1:
-            vetor_ordenado = bubble_sort(vetor, TAM);
+            if(ord == 1){
+                vetor_final = bubble_sort(vetor_ordenado, TAM);
+            }
+            if(ord == 2){
+                vetor_final = bubble_sort(vetor_random, TAM);
+            }
+            if(ord == 3){
+                vetor_final = bubble_sort(vetor_inverso, TAM);
+            }
             puts("\nBubble sort:");
             break;
         case 2:
-            vetor_ordenado = insertion_sort(vetor, TAM);
+            if(ord == 1){
+                vetor_final = insertion_sort(vetor_ordenado, TAM);
+            }
+            if(ord == 2){
+                vetor_final = insertion_sort(vetor_random, TAM);
+            }
+            if(ord == 3){
+                vetor_final = insertion_sort(vetor_inverso, TAM);
+            }
             puts("\nInsertion sort:");
             break;
         case 3:
-            vetor_ordenado = selection_sort(vetor, TAM);
+            if(ord == 1){
+                vetor_final = selection_sort(vetor_ordenado, TAM);
+            }
+            if(ord == 2){
+                vetor_final = selection_sort(vetor_random, TAM);
+            }
+            if(ord == 3){
+                vetor_final = selection_sort(vetor_inverso, TAM);
+            }
             puts("\nSelection sort:");
             break;
         case 4:
-            vetor_ordenado = merge_sort(vetor, 0, TAM-1);
+            if(ord == 1){
+                vetor_final = merge_sort(vetor_ordenado, 0, TAM-1);
+            }
+            if(ord == 2){
+                vetor_final = merge_sort(vetor_random, 0, TAM-1);
+            }
+            if(ord == 3){
+                vetor_final = merge_sort(vetor_inverso, 0, TAM-1);
+            }
             puts("\nMerge sort:");
             break;
         case 5:
-            vetor_ordenado = quick_sort(vetor, 0, TAM-1);
+            if(ord == 1){
+                vetor_final = quick_sort(vetor_ordenado, 0, TAM-1);
+            }
+            if(ord == 2){
+                vetor_final = quick_sort(vetor_random, 0, TAM-1);
+            }
+            if(ord == 3){
+                vetor_final = quick_sort(vetor_inverso, 0, TAM-1);
+            }
             puts("\nQuick sort:");
             break;
         default:
@@ -63,8 +130,10 @@ void menu(int opcao){
     double tempo = (fim - inicio) * 1000.0 / CLOCKS_PER_SEC;
     printf("Tempo gasto: %.3f ms.\n", tempo);
     printf("Tempo gasto: %.3f s.\n", tempo/1000);
-    puts("\n");
+    puts("\nPressione qualquer tecla para continuar!\n");
+    getch();
 
+    //system()
     //imprimindo depois de ordenar
     //imprimirVetor(vetor_ordenado, TAM);
 
@@ -73,38 +142,49 @@ void menu(int opcao){
 
 int main(){
 
-    system("clear");
+    clear();
     
     int opc = 0;
+    int ord = 0;
     
     do{
-        puts("0 - SAIR | 1 - BUBBLE SORT | 2 - INSERTION SORT | 3 - SELECTION SORT | 4 - MERGE SORT | 5 - Quick sort");
+        //clear();
+        puts("TIPO DE ORDENACAO: 0 - SAIR | 1 - CRESCENTE | 2 - RANDOM | 3 - DECRESCENTE");
+        scanf("%d", &ord);
+        
+        if (ord == 0){
+            puts("FLW!");
+            break;
+        }
+        
+        puts("0 - SAIR | 1 - BUBBLE SORT | 2 - INSERTION SORT | 3 - SELECTION SORT | 4 - MERGE SORT | 5 - QUICK SORT");
         scanf("%d", &opc);
+
 
         switch(opc){
             case 0:
-                system("clear");
+                clear();
                 puts("FLW!");
                 break;
             case 1:
-                system("clear");
-                menu(opc);
+                clear();
+                menu(opc, ord);
                 break;
             case 2:
-                system("clear");
-                menu(opc);
+                clear();
+                menu(opc, ord);
                 break;
             case 3:
-                system("clear");
-                menu(opc);
+                clear();
+                menu(opc, ord);
                 break;
             case 4:
-                system("clear");
-                menu(opc);
+                clear();
+                menu(opc, ord);
                 break;
             case 5:
-                system("clear");
-                menu(opc);
+                clear();
+                menu(opc, ord);
                 break;
             default:
                 puts("Opção inválida");

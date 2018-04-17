@@ -22,5 +22,7 @@ int* merge_sort(int vetor[], int comeco, int fim);
 //Quick sort
 int* quick_sort(int vetor[], int inicio, int fim);
 
+//Selection sort para ordenar em ordem decrescente
+int* selection_sort_inverso(int vetor[], int n);
 
 #endif
