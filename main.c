@@ -16,8 +16,12 @@ void clear(){
     #endif
 }
 
+<<<<<<< HEAD
 
 void menu(int opcao, int ord){
+=======
+void menu(int opcao){
+>>>>>>> 3223315ae8413a0033563f7f3216776418411393
 
     int TAM = 0;
     printf("Tamanho do vetor:. ");
@@ -142,12 +146,17 @@ void menu(int opcao, int ord){
 
 int main(){
 
+<<<<<<< HEAD
+=======
+    //system("clear");
+>>>>>>> 3223315ae8413a0033563f7f3216776418411393
     clear();
     
     int opc = 0;
     int ord = 0;
     
     do{
+<<<<<<< HEAD
         //clear();
         puts("TIPO DE ORDENACAO: 0 - SAIR | 1 - CRESCENTE | 2 - RANDOM | 3 - DECRESCENTE");
         scanf("%d", &ord);
@@ -157,16 +166,23 @@ int main(){
             break;
         }
         
+=======
+>>>>>>> 3223315ae8413a0033563f7f3216776418411393
         puts("0 - SAIR | 1 - BUBBLE SORT | 2 - INSERTION SORT | 3 - SELECTION SORT | 4 - MERGE SORT | 5 - QUICK SORT");
         scanf("%d", &opc);
 
 
         switch(opc){
             case 0:
+<<<<<<< HEAD
+=======
+                //system("clear");
+>>>>>>> 3223315ae8413a0033563f7f3216776418411393
                 clear();
                 puts("FLW!");
                 break;
             case 1:
+<<<<<<< HEAD
                 clear();
                 menu(opc, ord);
                 break;
@@ -185,6 +201,31 @@ int main(){
             case 5:
                 clear();
                 menu(opc, ord);
+=======
+                //system("clear");
+                clear();
+                menu(opc);
+                break;
+            case 2:
+                //system("clear");
+                clear();
+                menu(opc);
+                break;
+            case 3:
+                //system("clear");
+                clear();
+                menu(opc);
+                break;
+            case 4:
+                //system("clear");
+                clear();
+                menu(opc);
+                break;
+            case 5:
+                //system("clear");
+                clear();
+                menu(opc);
+>>>>>>> 3223315ae8413a0033563f7f3216776418411393
                 break;
             default:
                 puts("Opção inválida");
