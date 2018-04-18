@@ -49,6 +49,7 @@ void menu(int opcao, int ord){
     int vetor_random[TAM];
     int* vetor_ordenado;
     int* vetor_inverso;
+    int trocas = 0;
 
     //Populando o vetor com valores aleatórios
     for(int i = 0; i < TAM; i++){
@@ -57,7 +58,7 @@ void menu(int opcao, int ord){
 
     //ord = crescente
     if(ord == 1){
-        vetor_ordenado = quick_sort(vetor_random, 0, TAM-1);
+        vetor_ordenado = quick_sort(vetor_random, 0, TAM-1, &trocas);
     }
     
     //ord = decrescente
@@ -78,61 +79,61 @@ void menu(int opcao, int ord){
     switch(opcao){
         case 1:
             if(ord == 1){
-                vetor_final = bubble_sort(vetor_ordenado, TAM);
+                vetor_final = bubble_sort(vetor_ordenado, TAM, &trocas);
             }
             if(ord == 2){
-                vetor_final = bubble_sort(vetor_random, TAM);
+                vetor_final = bubble_sort(vetor_random, TAM, &trocas);
             }
             if(ord == 3){
-                vetor_final = bubble_sort(vetor_inverso, TAM);
+                vetor_final = bubble_sort(vetor_inverso, TAM, &trocas);
             }
             puts("\nBubble sort:");
             break;
         case 2:
             if(ord == 1){
-                vetor_final = insertion_sort(vetor_ordenado, TAM);
+                vetor_final = insertion_sort(vetor_ordenado, TAM, &trocas);
             }
             if(ord == 2){
-                vetor_final = insertion_sort(vetor_random, TAM);
+                vetor_final = insertion_sort(vetor_random, TAM, &trocas);
             }
             if(ord == 3){
-                vetor_final = insertion_sort(vetor_inverso, TAM);
+                vetor_final = insertion_sort(vetor_inverso, TAM, &trocas);
             }
             puts("\nInsertion sort:");
             break;
         case 3:
             if(ord == 1){
-                vetor_final = selection_sort(vetor_ordenado, TAM);
+                vetor_final = selection_sort(vetor_ordenado, TAM, &trocas);
             }
             if(ord == 2){
-                vetor_final = selection_sort(vetor_random, TAM);
+                vetor_final = selection_sort(vetor_random, TAM, &trocas);
             }
             if(ord == 3){
-                vetor_final = selection_sort(vetor_inverso, TAM);
+                vetor_final = selection_sort(vetor_inverso, TAM, &trocas);
             }
             puts("\nSelection sort:");
             break;
         case 4:
             if(ord == 1){
-                vetor_final = merge_sort(vetor_ordenado, 0, TAM-1);
+                vetor_final = merge_sort(vetor_ordenado, 0, TAM-1, &trocas);
             }
             if(ord == 2){
-                vetor_final = merge_sort(vetor_random, 0, TAM-1);
+                vetor_final = merge_sort(vetor_random, 0, TAM-1, &trocas);
             }
             if(ord == 3){
-                vetor_final = merge_sort(vetor_inverso, 0, TAM-1);
+                vetor_final = merge_sort(vetor_inverso, 0, TAM-1, &trocas);
             }
             puts("\nMerge sort:");
             break;
         case 5:
             if(ord == 1){
-                vetor_final = quick_sort(vetor_ordenado, 0, TAM-1);
+                vetor_final = quick_sort(vetor_ordenado, 0, TAM-1, &trocas);
             }
             if(ord == 2){
-                vetor_final = quick_sort(vetor_random, 0, TAM-1);
+                vetor_final = quick_sort(vetor_random, 0, TAM-1, &trocas);
             }
             if(ord == 3){
-                vetor_final = quick_sort(vetor_inverso, 0, TAM-1);
+                vetor_final = quick_sort(vetor_inverso, 0, TAM-1, &trocas);
             }
             puts("\nQuick sort:");
             break;
@@ -149,6 +150,7 @@ void menu(int opcao, int ord){
     double tempo = (fim - inicio) * 1000.0 / CLOCKS_PER_SEC;
     printf("Tempo gasto: %.3f ms.\n", tempo);
     printf("Tempo gasto: %.3f s.\n", tempo/1000);
+    printf("%d trocas efetudas\n", trocas);
     puts("\nPressione qualquer tecla para continuar!\n");
     getchar();
     getchar();
