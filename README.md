@@ -23,12 +23,20 @@ $ make.bat
 ```
 
 ## Como usar:
-Primeiro escolha o algoritmo de ordenação que deseja usar:
+Primeiro escolha a forma de ordenação do vetor inicial:
+* 1 - Crescente
+* 2 - Random
+* 3 - Decrescente
+
+Depois escolha o algoritmo de ordenação que deseja usar:
 * 1 - Bubble sort
 * 2 - Insertion sort
 * 3 - Selection sort
 * 4 - Merge sort
 * 5 - Quick sort
+
+Ou digite 6 para plotar os gráficos dos algoritmos:
+* 6 - Plotar os gráficos
 
 Depois escolha o tamanho do vetor:
 * 100
