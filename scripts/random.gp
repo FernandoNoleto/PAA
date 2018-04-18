@@ -1,7 +1,10 @@
-set title "Algoritmos em ordem aleatória" textcolor "red"
+set title "Vetor em ordem aleatoria"
 
-plot 'data/random/bubble.dat' with lines title columnheader(1),
-'data/random/insertion.dat' with lines title columnheader(1),
-'data/random/selection.dat' with lines title columnheader(1),
-'data/random/merge.dat' with lines title columnheader(1),
-'data/random/quick.dat' with lines title columnheader(1)
+set xlabel "Tamanho do vetor"
+set ylabel "Tempo em milisegundos (ms)"
+
+plot 'data/random/bubble.dat' title "bubble" lc rgb "red" with lines,\
+ 'data/random/selection.dat' title "selection"lc rgb "green" with lines,\
+ 'data/random/insertion.dat' title "insertion" lc rgb "blue" with lines,\
+ 'data/random/merge.dat' title "merge" lc rgb "black" with lines,\
+ 'data/random/quick.dat' title "quick" lc rgb "yellow" with lines

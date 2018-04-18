@@ -1,7 +1,10 @@
-set title "Algoritmos em ordem decrescente" textcolor "red"
+set title "Vetor ordenado em ordem decrescente"
 
-plot 'data/decrescente/bubble.dat' with lines title columnheader(1),
-'data/decrescente/insertion.dat' with lines title columnheader(1),
-'data/decrescente/selection.dat' with lines title columnheader(1),
-'data/decrescente/merge.dat' with lines title columnheader(1),
-'data/decrescente/quick.dat' with lines title columnheader(1)
+set xlabel "Tamanho do vetor"
+set ylabel "Tempo em milisegundos (ms)"
+
+plot 'data/decrescente/bubble.dat' title "bubble" lc rgb "red" with lines,\
+ 'data/decrescente/selection.dat' title "selection"lc rgb "green" with lines,\
+ 'data/decrescente/insertion.dat' title "insertion" lc rgb "blue" with lines,\
+ 'data/decrescente/merge.dat' title "merge" lc rgb "black" with lines,\
+ 'data/decrescente/quick.dat' title "quick" lc rgb "yellow" with lines

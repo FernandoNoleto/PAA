@@ -1,7 +1,10 @@
-set title "Algoritmos em ordem crescente" textcolor "red"
+set title "Vetor ordenado em ordem crescente"
 
-plot 'data/crescente/bubble.dat' with lines title columnheader(1),
-'data/crescente/insertion.dat' with lines title columnheader(1),
-'data/crescente/selection.dat' with lines title columnheader(1),
-'data/crescente/merge.dat' with lines title columnheader(1),
-'data/crescente/quick.dat' with lines title columnheader(1)
+set xlabel "Tamanho do vetor"
+set ylabel "Tempo em milisegundos (ms)"
+
+plot 'data/crescente/bubble.dat' title "bubble" lc rgb "red" with lines,\
+ 'data/crescente/selection.dat' title "selection"lc rgb "green" with lines,\
+ 'data/crescente/insertion.dat' title "insertion" lc rgb "blue" with lines,\
+ 'data/crescente/merge.dat' title "merge" lc rgb "black" with lines,\
+ 'data/crescente/quick.dat' title "quick" lc rgb "yellow" with lines

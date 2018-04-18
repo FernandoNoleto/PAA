@@ -1,1 +1,0 @@
-plot "bubble.dat"
