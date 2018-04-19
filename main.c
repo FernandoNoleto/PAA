@@ -19,12 +19,15 @@ void imprimir_graficos(int ord){
     switch(ord){
         case 1:
             system("gnuplot4 -p scripts/crescente.gp");
+            system("gnuplot4 -p scripts/crescente_trocas.gp");
             break;
         case 2:
             system("gnuplot4 -p scripts/random.gp");
+            system("gnuplot4 -p scripts/random_trocas.gp");
             break;
         case 3:
             system("gnuplot4 -p scripts/decrescente.gp");
+            system("gnuplot4 -p scripts/decrescente_trocas.gp");
             break;
         default:
             break;
