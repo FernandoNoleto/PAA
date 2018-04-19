@@ -49,7 +49,7 @@ void menu(int opcao, int ord){
     int vetor_random[TAM];
     int* vetor_ordenado;
     int* vetor_inverso;
-    int trocas = 0;
+    unsigned int trocas = 0;
 
     //Populando o vetor com valores aleatórios
     for(int i = 0; i < TAM; i++){

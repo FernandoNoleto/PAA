@@ -11,7 +11,7 @@ void imprimirVetor(int vetor[], int n) {
 }
 
 //bubble sort
-int* bubble_sort (int vetor[], int n, int* trocas) {
+int* bubble_sort (int vetor[], int n, unsigned int* trocas) {
     int k, j, aux;
     for (k = 1; k < n; k++) {
         for (j = 0; j < n - 1; j++) {
@@ -27,7 +27,7 @@ int* bubble_sort (int vetor[], int n, int* trocas) {
 }
 
 //insertion sort
-int* insertion_sort(int vetor[], int n, int* trocas) {
+int* insertion_sort(int vetor[], int n, unsigned int* trocas) {
     int i, chave, j;
     for (i = 1; i < n; i++){
         chave = vetor[i];
@@ -46,7 +46,7 @@ int* insertion_sort(int vetor[], int n, int* trocas) {
 }
 
 //selection sort
-int* selection_sort(int vetor[], int n, int* trocas) { 
+int* selection_sort(int vetor[], int n, unsigned int* trocas) { 
     int min, aux;
     for (int i = 0; i < (n-1); i++) {
         min = i;
@@ -66,7 +66,7 @@ int* selection_sort(int vetor[], int n, int* trocas) {
 
 //Função auxiliar merge
 
-int* merge(int vetor[], int comeco, int meio, int fim, int* trocas) {
+int* merge(int vetor[], int comeco, int meio, int fim, unsigned int* trocas) {
     int com1 = comeco, com2 = meio+1, comAux = 0, tam = fim-comeco+1;
     int *vetAux;
     vetAux = (int*)malloc(tam * sizeof(int));
@@ -105,7 +105,7 @@ int* merge(int vetor[], int comeco, int meio, int fim, int* trocas) {
 }
 
 //Merge Sort
-int* merge_sort(int vetor[], int comeco, int fim, int* trocas){
+int* merge_sort(int vetor[], int comeco, int fim, unsigned int* trocas){
     int* v;
     if (comeco < fim) {
         int meio = (fim+comeco)/2;
@@ -118,7 +118,7 @@ int* merge_sort(int vetor[], int comeco, int fim, int* trocas){
 }
 
 //Quick sort
-int* quick_sort(int vetor[], int inicio, int fim, int* trocas) {
+int* quick_sort(int vetor[], int inicio, int fim, unsigned int* trocas) {
 	int i, j, pivo, aux;
 	i = inicio;
 	j = fim-1;
