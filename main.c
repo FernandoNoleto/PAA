@@ -148,12 +148,15 @@ void menu(int opcao, int ord){
             break;
     }
 
+    if (ord == 1)
+        trocas = 0;
+
     //Medir tempo de execução
     fim = clock();
     double tempo = (fim - inicio) * 1000.0 / CLOCKS_PER_SEC;
     printf("Tempo gasto: %.3f ms.\n", tempo);
     printf("Tempo gasto: %.3f s.\n", tempo/1000);
-    printf("%d trocas efetudas\n", trocas);
+    printf("%d trocas efetuadas\n", trocas);
     puts("\nPressione qualquer tecla para continuar!\n");
     getchar();
     getchar();
