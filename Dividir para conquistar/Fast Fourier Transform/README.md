@@ -5,5 +5,5 @@
 
 ```bash
 make
-fft.out image_in [image_out]
+./main image_in [image_out]
 ```
