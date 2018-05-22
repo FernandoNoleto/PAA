@@ -15,8 +15,7 @@ void print_double_array(const double* arr, int length)
     }
     cout << endl;
 }
-void print_complex_array(const double complex* arr, int length)
-{
+void print_complex_array(const double complex* arr, int length){
     for (int i = 0; i < length; ++i) {
         cout << creal(arr[i]) << "+" << cimag(arr[i]) << "i, ";
     }
@@ -24,8 +23,7 @@ void print_complex_array(const double complex* arr, int length)
 }
 
 template<class T>
-void print_vector(const vector<T>& vec)
-{
+void print_vector(const vector<T>& vec) {
     for (unsigned int i = 0; i < vec.size(); ++i) {
         cout << vec[i] << ", ";
     }
@@ -36,8 +34,7 @@ void print_vector(const vector<T>& vec)
 // result[i] = a[i]*b[0] + a[i-1]*b[1] + ... + a[0]*b[i]
 // a and b can be vectors of different lengths, this function is careful to never
 // exceed the bounds of the vectors.
-vector<double> convolve(const vector<double>& a, const vector<double>& b)
-{
+vector<double> convolve(const vector<double>& a, const vector<double>& b) {
     int n_a = a.size();
     int n_b = b.size();
     vector<double> result(n_a + n_b - 1);
@@ -53,8 +50,7 @@ vector<double> convolve(const vector<double>& a, const vector<double>& b)
 }
 
 template <class T>
-vector<T> vector_elementwise_multiply(const vector<T> a, const vector<T> b)
-{
+vector<T> vector_elementwise_multiply(const vector<T> a, const vector<T> b) {
     assert(a.size() == b.size());
     vector<T> result(a.size());
     for (int i = 0; i < result.size(); ++i) {
@@ -65,8 +61,7 @@ vector<T> vector_elementwise_multiply(const vector<T> a, const vector<T> b)
 
 // Convolution of real vectors using the Fast Fourier Transform and the convolution theorem.
 // See http://en.wikipedia.org/w/index.php?title=Convolution&oldid=630841165#Fast_convolution_algorithms
-vector<double> fftw_convolve(vector<double>& a, vector<double>& b)
-{
+vector<double> fftw_convolve(vector<double>& a, vector<double>& b) {
     // Recall that element-wise
     int padded_length = a.size() + b.size() - 1;
     
@@ -117,8 +112,8 @@ vector<double> fftw_convolve(vector<double>& a, vector<double>& b)
     return result;
 }
 
-int main()
-{
+int main() {
+
     vector<double> a;
     a.push_back(2);
     a.push_back(1);
@@ -145,13 +140,20 @@ int main()
     cout << "Naive convolution result:\n";
     print_vector(result_naive);
 
+    
+    /*----------------------------------------------------*/
+    /*---------------------Convolução FFT-----------------*/
+    
     cout << "==== FFT convolution =============================================\n";
 
     vector<double> result_fft = fftw_convolve(a, b);
     cout << "FFT convolution result:\n";
     print_vector(result_fft);
 
+    
     /*----------------------------------------------------*/
+    /*---------------------Vetor final--------------------*/
+
     FILE* f = fopen("vetor_final.dat", "w");
     char output[50];
     for(vector<double>::iterator it = result_fft.begin(); it != result_fft.end(); it++){
@@ -160,26 +162,44 @@ int main()
         fprintf(f, "\n");
     }
     fclose(f);
+
     /*----------------------------------------------------*/
+    /*-------------------Convolução Naive-----------------*/
+    
+    f = fopen("naive.dat", "w");
+    
+    for(vector<double>::iterator it = result_naive.begin(); it != result_naive.end(); it++){
+        snprintf(output, 50, "%f", *it);
+        fprintf(f, output);
+        fprintf(f, "\n");
+    }
+    fclose(f);
+    
+    /*----------------------------------------------------*/
+    /*-----------------------Vetor a----------------------*/
+    
     f = fopen("a.dat", "w");
-    //free(output);
-    //char output[50];
+    
     for(vector<double>::iterator it = a.begin(); it != a.end(); it++){
         snprintf(output, 50, "%f", *it);
         fprintf(f, output);
         fprintf(f, "\n");
     }
     fclose(f);
+    
     /*----------------------------------------------------*/
+    /*-----------------------Vetor b----------------------*/
+    
     f = fopen("b.dat", "w");
-    //free(output);
-    //char output[50];
+    
     for(vector<double>::iterator it = b.begin(); it != b.end(); it++){
         snprintf(output, 50, "%f", *it);
         fprintf(f, output);
         fprintf(f, "\n");
     }
     fclose(f);
+    
+    /*----------------------------------------------------*/
     /*----------------------------------------------------*/
 
     system("gnuplot4 -p plotar.gp");
