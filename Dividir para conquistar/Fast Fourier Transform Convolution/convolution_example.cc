@@ -8,8 +8,7 @@
 
 using namespace std;
 
-void print_double_array(const double* arr, int length)
-{
+void print_double_array(const double* arr, int length) {
     for (int i = 0; i < length; ++i) {
         cout << arr[i] << ", ";
     }
@@ -49,6 +48,7 @@ vector<double> convolve(const vector<double>& a, const vector<double>& b) {
     return result;
 }
 
+
 template <class T>
 vector<T> vector_elementwise_multiply(const vector<T> a, const vector<T> b) {
     assert(a.size() == b.size());
@@ -59,8 +59,8 @@ vector<T> vector_elementwise_multiply(const vector<T> a, const vector<T> b) {
     return result;
 }
 
-// Convolution of real vectors using the Fast Fourier Transform and the convolution theorem.
-// See http://en.wikipedia.org/w/index.php?title=Convolution&oldid=630841165#Fast_convolution_algorithms
+//Convolution of real vectors using the Fast Fourier Transform and the convolution theorem.
+//See http://en.wikipedia.org/w/index.php?title=Convolution&oldid=630841165#Fast_convolution_algorithms
 vector<double> fftw_convolve(vector<double>& a, vector<double>& b) {
     // Recall that element-wise
     int padded_length = a.size() + b.size() - 1;
@@ -112,33 +112,52 @@ vector<double> fftw_convolve(vector<double>& a, vector<double>& b) {
     return result;
 }
 
+//x = tam de a
+//y = tam de b
+//i = índice do vetor a
+//j = índice do vetor b
+double convolve_rec(vector<double> a, vector<double> b, int x, int y, int i, int j, double sum) {
+    
+    if(i < a.size() + b.size() - 1) {
+        //sum = a[a.size() - x] * b[b.size() - y];
+        if(j <= i) {
+            sum += ((j < a.size()) && (i-j < b.size())) ? a[j]*b[i-j] : 0.0;
+            return convolve_rec(a, b, a.size(), b.size(), i, j+1, sum);
+        }
+        
+    }
+    
+    return sum; 
+
+}
+
+double desgraca(double a){
+    a += 1;
+
+    return a;
+}
+
+
 int main() {
 
     vector<double> a;
     a.push_back(2);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
-    a.push_back(1);
+    a.push_back(3);
+    a.push_back(4);
     cout << "First vector (a): ";
     print_vector(a);
 
     vector<double> b;
-    b.push_back(1);
-    b.push_back(0);
-    b.push_back(7);
+    b.push_back(2);
+    b.push_back(3);
     cout << "Second vector (b): ";
     print_vector(b);
 
-    cout << "==== Naive convolution ===========================================\n";
+    // cout << "==== Naive convolution ===========================================\n";
 
-    vector<double> result_naive = convolve(a, b);
-    cout << "Naive convolution result:\n";
-    print_vector(result_naive);
+    // vector<double> result_naive = convolve(a, b);
+    // cout << "Naive convolution result:\n";
+    // print_vector(result_naive);
 
     
     /*----------------------------------------------------*/
@@ -166,14 +185,13 @@ int main() {
     /*----------------------------------------------------*/
     /*-------------------Convolução Naive-----------------*/
     
-    f = fopen("naive.dat", "w");
     
-    for(vector<double>::iterator it = result_naive.begin(); it != result_naive.end(); it++){
-        snprintf(output, 50, "%f", *it);
-        fprintf(f, output);
-        fprintf(f, "\n");
-    }
-    fclose(f);
+    // for(vector<double>::iterator it = result_naive.begin(); it != result_naive.end(); it++){
+    //     snprintf(output, 50, "%f", *it);
+    //     fprintf(f, output);
+    //     fprintf(f, "\n");
+    // }
+    // fclose(f);
     
     /*----------------------------------------------------*/
     /*-----------------------Vetor a----------------------*/
@@ -200,9 +218,37 @@ int main() {
     fclose(f);
     
     /*----------------------------------------------------*/
+    /*-------------------Vetor final----------------------*/
+
+    vector<double> vetor_final;
+    int i = 0;
+    while(i < a.size()+b.size() - 1){
+        vetor_final.push_back(convolve_rec(a, b, a.size(), b.size(), i, 0, 0));
+        i++;
+    }
+
+    print_vector(vetor_final);
+
+    
+    /*----------------------------------------------------*/
     /*----------------------------------------------------*/
 
+    f = fopen("vf.dat", "w");
+    
+    for(vector<double>::iterator it = vetor_final.begin(); it != vetor_final.end(); it++){
+        snprintf(output, 50, "%f", *it);
+        fprintf(f, output);
+        fprintf(f, "\n");
+    }
+    fclose(f);
+
+    /*----------------------------------------------------*/
+    /*----------------------------------------------------*/
+    
+    
     system("gnuplot4 -p plotar.gp");
+
+    
 
     return 0;
 }
